@@ -1,0 +1,7 @@
+.base-button {
+  background-color: #ee2737 !important; /* overriding existing mui style */
+}
+
+.base-button:hover {
+  background-color: #ee2737 !important; /* overriding existing mui style */
+}

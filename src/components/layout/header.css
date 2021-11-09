@@ -1,0 +1,6 @@
+.app-header {
+  background-color: #ee2737 !important; /* overriding existing mui style */
+}
+.go-back {
+  margin: 5px;
+}
