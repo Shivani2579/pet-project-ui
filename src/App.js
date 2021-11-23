@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AddEditCandidate from "./components/candidate/addEditCandidate";
-import ListCandidates from "./components/candidate/listCandidates";
-import Layout from "./components/layout/layout";
-import { getPageData } from "./api/commonApis";
-import { PagedataContext } from "./contexts/pagedataContext";
+import AddEditCandidate from "pages/candidate/addEditCandidate";
+import ListCandidates from "pages/candidate/listCandidates";
+import MainLayout from "layout/main";
+import { getPageData } from "api/commonApis";
+import { PagedataContext, LoaderContext } from "contexts";
 
 const App = () => {
-  const [pagedata, setPagedata] = useState([]);
+  const [pageData, setPagedata] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
     getPageData().then((res) => {
       setPagedata(res.data);
     });
-  };
+  }, []);
 
   return (
     <Router>
-      <PagedataContext.Provider value={pagedata}>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <ListCandidates />
-            </Route>
-            <Route path={["/newcandidate/:action", "/candidate/:action/:id"]}>
-              <AddEditCandidate />
-            </Route>
-          </Switch>
-        </Layout>
+      <PagedataContext.Provider value={pageData}>
+        <LoaderContext.Provider value={{ loading, setLoading }}>
+          <MainLayout>
+            <Switch>
+              <Route exact path="/">
+                <ListCandidates />
+              </Route>
+              <Route path={["/newcandidate/:action", "/candidate/:id"]}>
+                <AddEditCandidate />
+              </Route>
+            </Switch>
+          </MainLayout>
+        </LoaderContext.Provider>
       </PagedataContext.Provider>
     </Router>
   );

@@ -1,10 +1,10 @@
 import { Field } from "formik";
 import { TextField } from "formik-mui";
 
-const FormField = (props) => {
+const FormField = ({ children, ...rest }) => {
   return (
-    <Field margin="normal" component={TextField} {...props}>
-      {props.children}
+    <Field margin="normal" component={TextField} {...rest}>
+      {children}
     </Field>
   );
 };

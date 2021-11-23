@@ -5,20 +5,15 @@ import { withRouter } from "react-router";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./header.css";
 
-const Header = (props) => {
-  let backIcon;
-  if (props.location.pathname !== "/") {
-    backIcon = (
-      <ArrowBackIcon
-        className="go-back"
-        onClick={() => props.history.goBack()}
-      />
-    );
-  }
+const Header = ({ history, location }) => {
   return (
     <AppBar className="app-header">
       <Toolbar>
-        {backIcon}
+        {location.pathname !== "/" ? (
+          <ArrowBackIcon className="go-back" onClick={() => history.goBack()} />
+        ) : (
+          ""
+        )}
         <Typography>Candidates</Typography>
       </Toolbar>
     </AppBar>
