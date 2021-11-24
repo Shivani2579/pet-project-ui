@@ -124,11 +124,8 @@ const AddEditCandidate = ({ history, match }) => {
             {isAddMode ? "Add Candidate" : "Edit Candidate"}
           </Typography>
           <FormField type="text" name="name" label="Name" />
-          <br />
           <FormField type="text" name="surname" label="Surname" />
-          <br />
           <FormField name="email" type="email" label="Email" />
-          <br />
           <FormField type="text" name="status" label="Select Status" select>
             {pageData.statuses
               ? pageData.statuses.map((menu) => {
@@ -140,7 +137,6 @@ const AddEditCandidate = ({ history, match }) => {
                 })
               : ""}
           </FormField>
-          <br />
           <FormField type="text" name="outcome" label="Select Outcome" select>
             {pageData.outcomes
               ? pageData.outcomes.map((menu) => {
@@ -152,7 +148,6 @@ const AddEditCandidate = ({ history, match }) => {
                 })
               : ""}
           </FormField>
-          <br />
           <FormField type="text" name="role" label="Select Role" select>
             {pageData.roles
               ? pageData.roles.map((menu) => {
@@ -165,7 +160,6 @@ const AddEditCandidate = ({ history, match }) => {
               : ""}
           </FormField>
           {isSubmitting && <LinearProgress />}
-          <br />
           <BaseButton
             onClick={submitForm}
             className="add-edit-candidate-form-submit"
